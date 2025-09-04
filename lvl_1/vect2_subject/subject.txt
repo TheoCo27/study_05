@@ -1,0 +1,30 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    subject.txt                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: theog <theog@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/09/04 20:35:53 by theog             #+#    #+#              #
+#    Updated: 2025/09/04 20:43:43 by theog            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+Assignment name: vect2
+Files to turn in: vect2.hpp vect2.cpp
+
+Créez une classe vect2 représentant un vecteur mathématique de dimension 2
+contenant des éléments de types 'int'
+
+Elle doit supporter l'addition, la soustraction et la multiplication par un scalaire
+(par exemple, l'expression (vect2(2, 2) * 2 == vect2(4, 4)) doit être vraie)
+
+L'opérateur [] peut être utilisé pour accéder aux composantes devotre vecteur 
+(en utilisant les index 0 et 1), aucun contrôle des bornes est requis
+
+Votre objet doit être affichable avec l'opérateur <<, de sorte que:
+std::cout << v << std::endl;
+produise la même sortie que:
+s << "{" << v[0] << ", " << v[1] << "}" << std::endl;
+
+Vous pouvez retrouvez un main dans ce répertoire qui doit fonctionner avec votre classe
