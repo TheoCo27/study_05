@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 21:34:07 by theog             #+#    #+#             */
-/*   Updated: 2025/09/04 22:06:27 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/04 23:22:22 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,118 @@ vect2& vect2::operator=(const vect2& other) // <-- FIX ICI
     return *this;
 }
 
-std::vector<int> vect2::get_vec(void)
+std::vector<int>& vect2::get_vec(void)
 {
     return vec;
+}
+
+
+vect2 vect2::operator+(const vect2& other) const
+{
+    vect2 result;
+
+    result.vec[0] = this->vec[0] + other.vec[0];
+    result.vec[1] = this->vec[1] + other.vec[1];
+    return result;
+}
+
+vect2 vect2::operator-(const vect2& other) const
+{
+    vect2 result;
+
+    result.vec[0] = this->vec[0] - other.vec[0];
+    result.vec[1] = this->vec[1] - other.vec[1];
+    return result;
+}
+
+
+vect2 vect2::operator++(void)
+{
+    this->vec[0] += 1;
+    this->vec[1] += 1;
+    return (*this);
+}
+
+vect2 vect2::operator++(int)
+{
+    vect2 copy(*this);
+
+    this->vec[0] += 1;
+    this->vec[1] += 1;
+    return (copy);
+}
+
+vect2 vect2::operator--(void)
+{
+    this->vec[0] -= 1;
+    this->vec[1] -= 1;
+    return (*this);
+}
+
+vect2 vect2::operator--(int)
+{
+    vect2 copy(*this);
+
+    this->vec[0] -= 1;
+    this->vec[1] -= 1;
+    return (copy);
+}
+
+vect2 vect2::operator*(const vect2& other) const
+{
+    vect2 result;
+
+    result.vec[0] = this->vec[0] * other.vec[0];
+    result.vec[1] = this->vec[1] * other.vec[1];
+    return result;
+}
+
+vect2 vect2::operator*(int other) const
+{
+    vect2 result;
+
+    result.vec[0] = this->vec[0] * other;
+    result.vec[1] = this->vec[1] * other;
+    return result;
+
+}
+
+vect2 operator*(const int other, const vect2& v)
+{
+    return v.operator*(other);// réutilise ton opérateur membre
+}
+
+vect2 vect2::operator+=(const vect2& other){
+    return (*this + other);
+}
+vect2 vect2::operator-=(const vect2& other)
+{
+    return (*this - other);
+}
+vect2 vect2::operator*=(const vect2& other)
+{
+    return(*this * other);
+}
+
+vect2 vect2::operator*=(int other)
+{
+    return(*this * other);
+}
+
+bool vect2::operator==(const vect2& other) const
+{
+    if (this->vec[0] == other.vec[0] && this->vec[1] == other.vec[1])
+        return true;
+    else
+        return false;
+}
+
+bool vect2::operator!=(const vect2& other) const
+{
+    if (!(*this == other))
+        return true;
+    else    
+        return false;
 }
 
 std::ostream& operator<<(std::ostream& stream, const vect2& to_print)

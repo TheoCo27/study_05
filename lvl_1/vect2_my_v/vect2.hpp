@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 21:26:44 by theog             #+#    #+#             */
-/*   Updated: 2025/09/04 22:10:02 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/04 23:22:27 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,28 @@ class vect2{
         vect2(const vect2& other);
         ~vect2();
         vect2& operator=(const vect2& other);
-        std::vector<int> get_vec(void);
+        std::vector<int>& get_vec(void);
         int operator[](int index) const;
         int& operator[](int index);
-        vect2 operator+(const vect2& other);
+        vect2 operator+(const vect2& other) const;
+        vect2 operator-(const vect2& other) const;
         vect2 operator++(void);
         vect2 operator++(int);
         vect2 operator--(void);
         vect2 operator--(int);
-        vect2 operator*(const vect2& other);
+        vect2 operator*(const vect2& other)const;
+        vect2 operator*(int other) const;  
+        vect2 operator+=(const vect2& other);
+        vect2 operator-=(const vect2& other);
+        vect2 operator*=(const vect2& other);
+        vect2 operator*=(int other);
+        bool operator==(const vect2& other)const;
+        bool operator!=(const vect2& other)const;
+        // bool operator>=(const vect2& other);
+        // bool operator<=(const vect2& other);
+        // bool operator>(const vect2& other);
+        // bool operator<(const vect2& other);
 
 };
-
+vect2 operator*(const int other, const vect2& v);
 std::ostream& operator<<(std::ostream& stream, const vect2& to_print);
