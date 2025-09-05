@@ -27,14 +27,18 @@ int main()
 	std::cout << v2 << std::endl;
     v2 = 3 * v2; // 9, 18
 	std::cout << v2 << std::endl;
+    v2 += v2 += v3;
+	std::cout << "v2 += v2 += v3> " << v2 << std::endl;// 20, 40
     v1 *= 42; // -84, -168
 	std::cout << v1 << std::endl;
-    // v1 = v1 - v1 + v1; // nothing change
-    // v[1] = 12;
-    // std::cout << -v1 << std::endl;
-    // std::cout << v1[1] << std::endl;
-    // std::cout << v1 == v3 << std::endl;
-    // std::cout << v1 != v3 << std::endl;
+    v1 = v1 - v1 + v1; // nothing change
+	std::cout << v1 << std::endl;
+    v1[1] = 12;
+	std::cout << v1 << std::endl;
+    std::cout << -v1 << std::endl;
+    std::cout << v1[1] << std::endl;
+    std::cout << (v1 == v3) << std::endl;
+    std::cout << (v1 != v3) << std::endl;
 }
 
 // int main()

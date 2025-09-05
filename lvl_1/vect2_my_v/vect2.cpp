@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 21:34:07 by theog             #+#    #+#             */
-/*   Updated: 2025/09/04 23:22:22 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/05 10:58:04 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,14 @@ vect2 vect2::operator-(const vect2& other) const
     return result;
 }
 
+vect2 vect2::operator-(void)const
+{
+    vect2 result;
+
+    result.vec[0] = -this->vec[0];
+    result.vec[1] = -this->vec[1];
+    return result;
+}
 
 vect2 vect2::operator++(void)
 {
@@ -137,24 +145,28 @@ vect2 vect2::operator*(int other) const
 
 vect2 operator*(const int other, const vect2& v)
 {
-    return v.operator*(other);// réutilise ton opérateur membre
+    return (v * other);
 }
 
 vect2 vect2::operator+=(const vect2& other){
-    return (*this + other);
+    *this = *this + other;
+    return (*this);
 }
 vect2 vect2::operator-=(const vect2& other)
 {
-    return (*this - other);
+    *this = *this  - other;
+    return (*this);
 }
 vect2 vect2::operator*=(const vect2& other)
 {
-    return(*this * other);
+    *this = *this * other;
+    return(*this);
 }
 
 vect2 vect2::operator*=(int other)
 {
-    return(*this * other);
+    *this = *this * other;
+    return(*this);
 }
 
 bool vect2::operator==(const vect2& other) const

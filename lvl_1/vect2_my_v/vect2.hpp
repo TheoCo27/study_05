@@ -6,13 +6,14 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 21:26:44 by theog             #+#    #+#             */
-/*   Updated: 2025/09/04 23:22:27 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/05 10:54:14 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <vector>
 #include <iostream>
+#include <stdexcept>
 
 class vect2{
     private:
@@ -28,6 +29,7 @@ class vect2{
         int& operator[](int index);
         vect2 operator+(const vect2& other) const;
         vect2 operator-(const vect2& other) const;
+        vect2 operator-(void)const;
         vect2 operator++(void);
         vect2 operator++(int);
         vect2 operator--(void);
@@ -46,5 +48,6 @@ class vect2{
         // bool operator<(const vect2& other);
 
 };
+
 vect2 operator*(const int other, const vect2& v);
 std::ostream& operator<<(std::ostream& stream, const vect2& to_print);
