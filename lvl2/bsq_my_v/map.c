@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:33:57 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/06 15:24:48 by tcohen           ###   ########.fr       */
+/*   Updated: 2025/09/06 16:54:22 by tcohen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char **copy_map(char **map, int line_count)
 		ft_strcpy(map_copy[i], map[i]);
 		i++;
 	}
+	map_copy[i] = NULL;
 	return (map_copy);
 }
 
@@ -36,7 +37,19 @@ char **add_line_to_map(char *line, char **map, int line_count)
 {
 	if (!line)
 		return(free_all(map), NULL);
+	char **map_copy;
+
+	map_copy = map;
 	map = malloc((sizeof(char *)) * (line_count + 1));
+	if (!map)
+		return(free_all(map_copy), NULL);
+	map[line_count] = NULL;
+	int i = 0;
+	while(map_copy[i])
+	{
+		
+		i++;
+	}
 }
 
 char **get_map(int fd, t_map map)
