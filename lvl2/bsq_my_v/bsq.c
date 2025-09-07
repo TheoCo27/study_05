@@ -84,7 +84,7 @@ int find_square(t_map map, int width)
         {
             j = 0;
             first_line_found = 0;
-            first_line_start = wall_pos;
+            first_line_start = wall_pos + 1;
             continue;
         }
         midline++;
