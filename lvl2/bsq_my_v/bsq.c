@@ -77,6 +77,8 @@ int find_square(t_map map, int width)
                 j++;
                 continue;
             }
+            j++;
+            continue;
         }
         if (wall_pos = possible_line(map.map[j], map.obstacle_c, width, first_line_start) != -1)
         {
