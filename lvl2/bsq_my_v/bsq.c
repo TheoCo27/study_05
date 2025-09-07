@@ -99,18 +99,44 @@ int find_square(t_map map, int width)
     return 0;
 }
 
+void add_square(t_map map, char c)
+{
+    int j = map.fline_index;
+    int i;
+    int len = 0;
+    
+    while(map[j])
+    {
+        i = map.fline_start;
+        while(len < map.max_width)
+        {
+            map[j][i] = c;
+            i++;
+            len++;
+        }
+        j++;
+    }
+    
+}
+
 void find_biggest_square(t_map map, int width)
 {
     int i = width;
+    int square_found = 0; 
     
     while(i > 0)
     {
         if (find_square(map, i) == 1)
+        {
+            square_found = 1;
             break;
+        }
         i--;
     }
-    
-    
-
+    if(square_found == 0)
+        fprintf(stderr, "Error: no solution\n");
+    else
+        add_square(map, map.full_c);
+    free_all(map.map);
 }
 
