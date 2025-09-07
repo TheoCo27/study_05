@@ -34,6 +34,7 @@ typedef struct s_map
 	FILE *file;
 	int fline_index;
 	int fline_start;
+	int width_max;
 
 } t_map;
 
