@@ -32,7 +32,8 @@ typedef struct s_map
 	char **map;
 	char *filename;
 	FILE *file;
-	int 
+	int fline_index;
+	int fline_start;
 
 } t_map;
 
