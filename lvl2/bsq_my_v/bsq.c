@@ -98,3 +98,10 @@ int find_square(t_map map, int width)
     }
     return 0;
 }
+
+void find_biggest_square(t_map map, int width)
+{
+    
+
+}
+
