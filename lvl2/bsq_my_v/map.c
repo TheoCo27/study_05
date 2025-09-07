@@ -12,6 +12,18 @@
 
 #include "bsq.h"
 
+void print_map(char **map)
+{
+	int i = 0;
+	
+	while(map[i])
+	{
+		fprintf(stdout, "%s\n", map[i]);
+		i++;
+	}
+	
+}
+
 char **copy_map(char **map, int line_count)
 {
 	int i = 0;
