@@ -46,13 +46,13 @@ int possible_line(char *line, char wall, int width, int start)
     while(line[i])
     {
         if (line[i] == wall)
-            return -1;
+            return i;
         available_len++;
         if (available_len == width)
-            return start;
+            return -1
         i++;
     }
-    return -1;
+    return i;
 }
 
 int find_square(t_map map, int width)
@@ -62,7 +62,8 @@ int find_square(t_map map, int width)
     int first_line_found = 0;
     int first_line_index = 0;
     int first_line_start = 0;
-    int check_midline = 0;
+    int wall_pos = 0;
+    int midline = 0; 
 
     while(map.map[j])
     {
@@ -76,15 +77,15 @@ int find_square(t_map map, int width)
                 continue;
             }
         }
-        if (possible_line(map.map[j], map.obstacle_c, width, first_line_start) == -1)
+        if (wall_pos = possible_line(map.map[j], map.obstacle_c, width, first_line_start) != -1)
         {
             j = 0;
             first_line_found = 0;
-            first_line_start++;
+            first_line_start = wall_pos;
             continue;
         }
-        check_midline++;
-        if (check_midline == width - 1)
+        midline++;
+        if (midline == width - 1)
             return 1;
         j++;
     }
