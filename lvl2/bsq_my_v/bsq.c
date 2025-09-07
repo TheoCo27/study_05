@@ -73,6 +73,7 @@ int find_square(t_map map, int width)
             if (first_line_start != -1)
             {
                 first_line_found = 1;
+                first_line_index = j;
                 j++;
                 continue;
             }
@@ -86,8 +87,12 @@ int find_square(t_map map, int width)
         }
         midline++;
         if (midline == width - 1)
+        {
+            map.fline_index = first_line_index;
+            map.fline_start = first_line_start;
             return 1;
+        }
         j++;
     }
-    
+    return 0;
 }
