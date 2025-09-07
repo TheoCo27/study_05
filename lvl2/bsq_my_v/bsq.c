@@ -101,6 +101,15 @@ int find_square(t_map map, int width)
 
 void find_biggest_square(t_map map, int width)
 {
+    int i = width;
+    
+    while(i > 0)
+    {
+        if (find_square(map, i) == 1)
+            break;
+        i--;
+    }
+    
     
 
 }
