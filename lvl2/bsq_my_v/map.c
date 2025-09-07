@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:33:57 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/06 16:54:22 by tcohen           ###   ########.fr       */
+/*   Updated: 2025/09/07 19:08:30 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,32 @@ char **add_line_to_map(char *line, char **map, int line_count)
 	int i = 0;
 	while(map_copy[i])
 	{
-		
+		map[i] = map_copy[i];
 		i++;
 	}
+	map[i] = line;
+	free(map_copy);
+	return (map);
 }
 
-char **get_map(int fd, t_map map)
+char **get_map(FILE *file, t_map *map)
 {
+	errno = 0;
 	char *line = NULL;
 	int line_count = 0;
+	size_t len = 0;      // taille du buffer (sera gérée par getline)
+    ssize_t nread;       // nombre de caractères lus
 
-	while(1)
+	while((nread = getline(&line, &len, file)) != -1)
 	{
-		line = getline(fd);
-		if (!line)
-			break;
 		line_count++;
+		if (add_line_to_map(line, map->map, line_count) == NULL)
+			return (NULL);
+		line = NULL;
+		len = 0;
 	}
-
+	if (errno == 0)
+		return (map->map);
+	else
+		return(free_all(map->map), NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsq.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:16:25 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/06 15:30:43 by tcohen           ###   ########.fr       */
+/*   Updated: 2025/09/07 19:46:24 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/errno.h>
 
 #define OK 1
 #define KO 0
@@ -30,7 +31,8 @@ typedef struct s_map
 	char full_c;
 	char **map;
 	char *filename;
-	int fd;
+	FILE *file;
+	int 
 
 } t_map;
 
@@ -38,5 +40,7 @@ int ft_strlen(char *str);
 void ft_strcpy(char *dest, char *src);
 void free_all(char **map);
 int map_len(char **map);
+char **get_map(FILE *file, t_map *map);
+char **copy_map(char **map, int line_count);
 
 #endif
