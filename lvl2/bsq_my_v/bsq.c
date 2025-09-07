@@ -137,6 +137,7 @@ void find_biggest_square(t_map map, int width)
         fprintf(stderr, "Error: no solution\n");
     else
         add_square(map, map.full_c);
+    print_map(map.map);
     free_all(map.map);
 }
 
