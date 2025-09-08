@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 15:26:13 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/08 14:31:52 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/08 14:34:32 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int find_square(t_map *map, int width)
             j = 0;
             first_line_found = 0;
             midline = 0;
-            first_line_start++;
+            first_line_start = wall_pos + 1;
             continue;
         }
         midline++;
