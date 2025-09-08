@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:16:25 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/08 13:29:51 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/08 15:19:22 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_map
 	long map_width;
 	long map_height;
 	size_t line_length;
-	char *char_set;
+	char char_set[3];
 	char empty_c;
 	char obstacle_c;
 	char full_c;
@@ -36,6 +36,7 @@ typedef struct s_map
 	int fline_index;
 	int fline_start;
 	int max_width;
+	char *first_line;
 
 } t_map;
 

@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:48:27 by theog             #+#    #+#             */
-/*   Updated: 2025/09/08 14:07:32 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/08 15:32:45 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void init_map(t_map *map)
 	map->fline_index = -1;
     map->fline_start = -1;
 	map->max_width = 0;
-    map->char_set = NULL;
+    map->first_line = NULL;
 }
 
 
@@ -71,13 +71,13 @@ int treat_argv(char *filename)
     }
     if (get_map(map->file, map) == NULL)
         return -1;
-    //checker_functions here
     tmp_map = map->map;
-    map->char_set = tmp_map[0];
-    tmp_line1 = map->char_set;
-    map->map = &map->map[1];
+    tmp_line1 = map->map[0];
+    map->first_line = map->map[0];
     map->map_height = map_len(map->map);
-    map->map_width = ft_strlen(map->map[0]);
+    map->map_width = ft_strlen(map->map[1]);
+    //checker_functions here
+    map->map = &map->map[1];
     map->empty_c = map->char_set[2];
     map->obstacle_c = map->char_set[4];
     map->full_c = map->char_set[6];
