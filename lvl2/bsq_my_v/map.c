@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:33:57 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/07 19:08:30 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/08 14:02:52 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void print_map(char **map)
 	
 	while(map[i])
 	{
-		fprintf(stdout, "%s\n", map[i]);
+		fprintf(stdout, "%s", map[i]);
 		i++;
 	}
 	
@@ -49,15 +49,15 @@ char **add_line_to_map(char *line, char **map, int line_count)
 {
 	if (!line)
 		return(free_all(map), NULL);
-	char **map_copy;
+	char **map_copy = NULL;
 
 	map_copy = map;
 	map = malloc((sizeof(char *)) * (line_count + 1));
 	if (!map)
-		return(free_all(map_copy), NULL);
+		return(free_all(map), NULL);
 	map[line_count] = NULL;
 	int i = 0;
-	while(map_copy[i])
+	while(map_copy != NULL && map_copy[i])
 	{
 		map[i] = map_copy[i];
 		i++;
@@ -69,8 +69,8 @@ char **add_line_to_map(char *line, char **map, int line_count)
 
 char **get_map(FILE *file, t_map *map)
 {
-	errno = 0;
 	char *line = NULL;
+	errno = 0;
 	int line_count = 0;
 	size_t len = 0;      // taille du buffer (sera gérée par getline)
     ssize_t nread;       // nombre de caractères lus
@@ -78,10 +78,10 @@ char **get_map(FILE *file, t_map *map)
 	while((nread = getline(&line, &len, file)) != -1)
 	{
 		line_count++;
-		if (add_line_to_map(line, map->map, line_count) == NULL)
+		if ((map->map = add_line_to_map(line, map->map, line_count)) == NULL)
 			return (NULL);
-		line = NULL;
 		len = 0;
+		line = NULL;
 	}
 	if (errno == 0)
 		return (map->map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:17:26 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/06 15:19:57 by tcohen           ###   ########.fr       */
+/*   Updated: 2025/09/08 13:36:29 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int check_set_only(char *str, char *set)
 			}
 			j++;
 		}
-		if (check = 0)
+		if (check == 0)
 			return 0;
 		i++;
 	}
