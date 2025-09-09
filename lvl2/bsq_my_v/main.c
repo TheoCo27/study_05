@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:11:10 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/09 13:36:32 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/09 16:01:21 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ int main(int argc, char **argv)
 		fprintf(stdout, "\n\n");
 		i++;
 	}
+	if (i == 1)
+		treat_stdin();
 	return 0;
 }

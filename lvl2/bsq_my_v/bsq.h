@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:16:25 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/09 15:26:30 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/09 16:00:47 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int treat_argv(char *filename);
 int check_first_line(char *line, t_map *map);
 int check_all_midline(char **tab_line, t_map *map);
 void free_allbut1st(char **map);
+int treat_stdin(void);
 
 #endif
