@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:33:57 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/09 16:08:17 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/09 16:12:27 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void print_map(char **map)
 {
 	int i = 0;
-	
+	if (!map)
+		return;
 	while(map[i])
 	{
 		fprintf(stdout, "%s", map[i]);
