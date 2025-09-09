@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:17:26 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/08 15:42:23 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/09 15:29:42 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int check_set_only(char *str, char *set)
 
 int ft_isdigit(char c)
 {
+	int check = (int)c; 
+	if (check < 48 || check > 57)
+		return 0;
 	return 1;
 }
 
@@ -46,11 +49,37 @@ int check_midline(char *line, t_map *map)
 	int last_char;
 	if (check_set_only(line, map->char_set) == 0)
 		return 0;
+	if (ft_strlen(line) < 1)
+		return 0;
+	if (line == map->map[map->map_height - 1])
+	{
+		if (ft_strlen(line) != map->map_width - 1)
+			return 0;
+		
+		return 1;
+	}
 	if (ft_strlen(line) != map->map_width)
 		return 0;
 	last_char = ft_strlen(line) - 1;
 	if (line[last_char] != '\n')
 		return 0;
+	return 1;
+}
+
+int check_all_midline(char **tab_line, t_map *map)
+{
+	printf("in allmidline func\n");
+	int i = 0;
+	while(tab_line[i])
+	{
+		if (check_midline(tab_line[i], map) == 0)
+			return 0;
+		i++;
+	}
+	if (i == 0)
+		return 0;
+	fprintf(stdout, "all midline validated\n");
+	return 1;
 }
 
 int check_first_line(char *line, t_map *map)
@@ -61,7 +90,7 @@ int check_first_line(char *line, t_map *map)
 	int wall_ok = 0;
 	int full_ok = 0;
 
-	while(line[i])
+	while(line[i] )
 	{
 		if (nb_ok == 0 && ft_isdigit(line[i]) == 0)
 			return 0;
@@ -73,7 +102,7 @@ int check_first_line(char *line, t_map *map)
 			break;
 		i++;
 	}
-	char *char_set = line[i];
+	char *char_set = &line[i];
 	if (ft_strlen(char_set) != 7)
 		return 0;
 	char s1 = char_set[0];
@@ -95,5 +124,6 @@ int check_first_line(char *line, t_map *map)
 	map->char_set[0] = empty;
 	map->char_set[1] = wall;
 	map->char_set[2] = full;
+	map->char_set[3] = '\0';
 	return 1;
 }

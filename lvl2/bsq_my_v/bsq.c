@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 15:26:13 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/08 14:34:32 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/09 15:15:24 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,11 @@ void find_biggest_square(t_map *map, int width)
     if(square_found == 0)
     {
         fprintf(stderr, "Error: no solution\n");
-        free_all(map->map);
+        //free_all(map->map);
         return;
     }
     add_square(map, map->full_c, i);
     print_map(map->map);
-    free_all(map->map);
+    //free_all(map->map);
 }
 

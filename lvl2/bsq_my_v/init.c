@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 18:48:27 by theog             #+#    #+#             */
-/*   Updated: 2025/09/08 15:32:45 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/09 15:42:18 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void init_map(t_map *map)
     map->empty_c = '\0';
     map->obstacle_c = '\0';
     map->full_c = '\0';
-    map->map = NULL;
+    map->map = malloc(sizeof(char *) * 2);
     map->filename = NULL;
     map->file = NULL;
 	map->fline_index = -1;
@@ -62,6 +62,8 @@ int treat_argv(char *filename)
     char **tmp_map = NULL;
     char *tmp_line1 = NULL;
     init_map(map);
+    if (!map->map)
+        return 1;
     map->filename = filename;
     map->file = fopen(filename, "r");
     if (!map->file)
@@ -74,18 +76,26 @@ int treat_argv(char *filename)
     tmp_map = map->map;
     tmp_line1 = map->map[0];
     map->first_line = map->map[0];
-    map->map_height = map_len(map->map);
+    map->map_height = map_len(map->map) - 1;
     map->map_width = ft_strlen(map->map[1]);
-    //checker_functions here
+    if (check_first_line(tmp_line1, map) == 0)
+        return(free_all(tmp_map), 1);
+    if (map_len(map->map) < 2)
+        return(free_all(tmp_map), 1);
     map->map = &map->map[1];
-    map->empty_c = map->char_set[2];
-    map->obstacle_c = map->char_set[4];
-    map->full_c = map->char_set[6];
+    if (check_all_midline(map->map, map) == 0)
+        return(free_all(tmp_map), 1);
+    map->empty_c = map->char_set[0];
+    map->obstacle_c = map->char_set[1];
+    map->full_c = map->char_set[2];
+    fprintf(stdout, "\n charset = %s\n", map->char_set);
     if (map->map_height <= map->map_width)
         map->max_width = map->map_height;
     else if(map->map_width < map->map_height)
         map->max_width = map->map_width;
     find_biggest_square(map, map->max_width);
-    free(tmp_line1);
+    //free(tmp_line1);
+    free_all(tmp_map);
+    printf("\n%p\n", (void *)map->char_set);
     return 0;
 }

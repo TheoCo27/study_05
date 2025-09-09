@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:16:25 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/08 15:19:22 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/09 15:26:30 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_map
 	long map_width;
 	long map_height;
 	size_t line_length;
-	char char_set[3];
+	char char_set[4];
 	char empty_c;
 	char obstacle_c;
 	char full_c;
@@ -49,5 +49,8 @@ char **copy_map(char **map, int line_count);
 void print_map(char **map);
 void find_biggest_square(t_map *map, int width);
 int treat_argv(char *filename);
+int check_first_line(char *line, t_map *map);
+int check_all_midline(char **tab_line, t_map *map);
+void free_allbut1st(char **map);
 
 #endif

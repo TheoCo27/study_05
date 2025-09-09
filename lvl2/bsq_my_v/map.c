@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 14:33:57 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/08 14:02:52 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/09 15:43:53 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ char **get_map(FILE *file, t_map *map)
 		len = 0;
 		line = NULL;
 	}
+	free(line);
 	if (errno == 0)
-		return (map->map);
+		return (fclose(file), map->map);
 	else
-		return(free_all(map->map), NULL);
+		return(fclose(file), free_all(map->map), NULL);
 }
