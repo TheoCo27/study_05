@@ -6,7 +6,7 @@
 /*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:57:15 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/22 23:22:25 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/23 01:12:36 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,9 @@ int is_alive(char alive, int nb_neighboors)
 void play_life(t_game *game)
 {
 	int j = 0;
+	char **new_board = init_board(game->width, game->height);
+	if (!new_board)
+		return;
 	while(game->board[j])
 	{
 		int i = 0;
@@ -166,32 +169,27 @@ void play_life(t_game *game)
 			int nb_neighboors = 0;
 			nb_neighboors = get_nb_neighboors(i, j, game);
 			if (is_alive(game->board[j][i], nb_neighboors) == 1)
-				game->board[j][i] = '0';
+				new_board[j][i] = '0';
 			else
-				game->board[j][i] = ' ';
+				new_board[j][i] = ' ';
 			i++;
 		}
 		j++;
 	}
-
+	char **temp = game->board;
+	game->board = new_board;
+	ft_free_all((void **)temp);
 }
 
 void start_life(t_game *game)
 {
-	//ft_putstr("Empty map\n\n");
-	//ft_putmap(game->board);
 	init_life(game);
 
 	int i = 0;
-	//ft_putstr("Before iteration\n\n");
-	//ft_putmap(game->board);
 	while(i < game->iterations)
 	{
 		play_life(game);
-		//ft_putstr("After one iteration\n\n");
-		ft_putmap(game->board);
 		i++;
 	}
-	//ft_putstr("After all iterations\n\n");
 	ft_putmap(game->board);
 }
