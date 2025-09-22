@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gol.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 13:55:29 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/22 17:20:55 by tcohen           ###   ########.fr       */
+/*   Updated: 2025/09/22 22:59:23 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void fill_with_space(char *str, int len);
 char **init_board(int width, int height);
 void ft_putstr(char *str);
 void ft_putmap(char **map);
-void play_the_game(t_game *game);
+void start_life(t_game *game);
 
 #endif

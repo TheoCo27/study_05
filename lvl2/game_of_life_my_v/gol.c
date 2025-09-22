@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gol.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:57:15 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/22 20:02:23 by tcohen           ###   ########.fr       */
+/*   Updated: 2025/09/22 23:22:25 by theog            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,20 +113,85 @@ int get_nb_neighboors(int index, int line_nb, t_game *game)
 	int j = line_nb;
 	int nb_neighboors = 0;
 
-	if (game->board[j][i + 1] == '0')
+	if ((i != game->width - 1) && game->board[j][i + 1] == '0')
 		nb_neighboors++;
-	if (game->board[j + 1][i] == '0')
+	if ((j != game->height - 1) && game->board[j + 1][i] == '0')
 		nb_neighboors++;
-	if (game->board[j + 1][i + 1] == '0')
+	if ((i != game->width - 1) && (j != game->height - 1) && game->board[j + 1][i + 1] == '0')
 		nb_neighboors++;
-	if (game->board[j - 1][i - 1] == '0')
+	if (i != 0 && j != 0 && game->board[j - 1][i - 1] == '0')
 		nb_neighboors++;
-
+	if (j != 0 && game->board[j - 1][i] == '0')
+		nb_neighboors++;
+	if (i != 0 && game->board[j][i - 1] == '0')
+		nb_neighboors++;
+	if (j != 0 && (i != game->width - 1) && game->board[j - 1][i + 1] == '0')
+		nb_neighboors++;
+	if (i != 0 && (j != game->height - 1) && game->board[j + 1][i - 1] == '0')
+		nb_neighboors++;
 
 	return nb_neighboors;
 }
 
+int is_alive(char alive, int nb_neighboors)
+{
+	if (alive == '0')
+	{
+		if (nb_neighboors < 2)
+			return 0;
+		if (nb_neighboors >= 2 && nb_neighboors <= 3)
+			return 1;
+		if (nb_neighboors > 3)
+			return 0;
+	}
+	else
+	{
+		if(nb_neighboors == 3)
+			return 1;
+		else
+			return 0;
+
+	}
+	return 0;
+}
+
 void play_life(t_game *game)
 {
+	int j = 0;
+	while(game->board[j])
+	{
+		int i = 0;
+		while(game->board[j][i])
+		{
+			int nb_neighboors = 0;
+			nb_neighboors = get_nb_neighboors(i, j, game);
+			if (is_alive(game->board[j][i], nb_neighboors) == 1)
+				game->board[j][i] = '0';
+			else
+				game->board[j][i] = ' ';
+			i++;
+		}
+		j++;
+	}
 
+}
+
+void start_life(t_game *game)
+{
+	//ft_putstr("Empty map\n\n");
+	//ft_putmap(game->board);
+	init_life(game);
+
+	int i = 0;
+	//ft_putstr("Before iteration\n\n");
+	//ft_putmap(game->board);
+	while(i < game->iterations)
+	{
+		play_life(game);
+		//ft_putstr("After one iteration\n\n");
+		ft_putmap(game->board);
+		i++;
+	}
+	//ft_putstr("After all iterations\n\n");
+	ft_putmap(game->board);
 }
