@@ -6,7 +6,7 @@
 /*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:57:15 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/22 18:32:35 by tcohen           ###   ########.fr       */
+/*   Updated: 2025/09/22 20:02:23 by tcohen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void make_move(char c, t_game *game)
 	write_if_necessary(game);
 }
 
-void play_the_game(t_game *game)
+void init_life(t_game *game)
 {
 	int i = 0;
 	while(game->cmd[i])
@@ -105,4 +105,28 @@ void play_the_game(t_game *game)
 		make_move(game->cmd[i], game);
 		i++;
 	}
+}
+
+int get_nb_neighboors(int index, int line_nb, t_game *game)
+{
+	int i = index;
+	int j = line_nb;
+	int nb_neighboors = 0;
+
+	if (game->board[j][i + 1] == '0')
+		nb_neighboors++;
+	if (game->board[j + 1][i] == '0')
+		nb_neighboors++;
+	if (game->board[j + 1][i + 1] == '0')
+		nb_neighboors++;
+	if (game->board[j - 1][i - 1] == '0')
+		nb_neighboors++;
+
+
+	return nb_neighboors;
+}
+
+void play_life(t_game *game)
+{
+
 }
