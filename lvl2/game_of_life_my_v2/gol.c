@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   gol.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theog <theog@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcohen <tcohen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:57:15 by tcohen            #+#    #+#             */
-/*   Updated: 2025/09/23 02:23:24 by theog            ###   ########.fr       */
+/*   Updated: 2025/09/23 16:26:47 by tcohen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gol.h"
-
 
 int check_w(t_game *game)
 {
@@ -40,8 +39,6 @@ int check_d(t_game *game)
 		return 0;
 	return 1;
 }
-
-
 
 int check_if_valid_cmd(char c, t_game *game)
 {
@@ -106,29 +103,20 @@ int check_if_overflow(int j, int i, int it_j, int it_i, t_game *board)
 	return 0;
 }
 
-int get_nb_neighboors(int index, int line_nb, t_game *game)
+int get_nb_neighboors(int i, int j, t_game *game)
 {
-	int i = index;
-	int j = line_nb;
 	int nb_neighboors = 0;
 
-	if (check_if_overflow(j, i, 0, 1, game) == 0 && game->board[j][i + 1] == '0')
-		nb_neighboors++;
-	if (check_if_overflow(j, i, 1, 0, game) == 0 && game->board[j + 1][i] == '0')
-		nb_neighboors++;
-	if (check_if_overflow(j, i, 1, 1, game) == 0 && game->board[j + 1][i + 1] == '0')
-		nb_neighboors++;
-	if (check_if_overflow(j, i, -1, -1, game) == 0 && game->board[j - 1][i - 1] == '0')
-		nb_neighboors++;
-	if (check_if_overflow(j, i, -1, 0, game) == 0 && game->board[j - 1][i] == '0')
-		nb_neighboors++;
-	if (check_if_overflow(j, i, 0, -1, game) == 0 && game->board[j][i - 1] == '0')
-		nb_neighboors++;
-	if (check_if_overflow(j, i, -1, 1, game) == 0 && game->board[j - 1][i + 1] == '0')
-		nb_neighboors++;
-	if (check_if_overflow(j, i, 1, -1, game) == 0 && game->board[j + 1][i - 1] == '0')
-		nb_neighboors++;
-
+	for(int it_j = -1; it_j <= 1; it_j++)
+	{
+		for(int it_i = -1; it_i <= 1; it_i++)
+		{
+			if(it_i == 0 && it_j == 0)
+				continue;
+			if(check_if_overflow(j, i, it_j, it_i, game) == 0 && game->board[it_j + j][it_i + i] == '0')
+				nb_neighboors++;
+		}
+	}
 	return nb_neighboors;
 }
 
@@ -147,11 +135,8 @@ int is_alive(char alive, int nb_neighboors)
 	{
 		if(nb_neighboors == 3)
 			return 1;
-		else
-			return 0;
-
+		return 0;
 	}
-	return 0;
 }
 
 int play_life(t_game *game)
@@ -169,8 +154,6 @@ int play_life(t_game *game)
 			nb_neighboors = get_nb_neighboors(i, j, game);
 			if (is_alive(game->board[j][i], nb_neighboors) == 1)
 				new_board[j][i] = '0';
-			else
-				new_board[j][i] = ' ';
 			i++;
 		}
 		j++;
